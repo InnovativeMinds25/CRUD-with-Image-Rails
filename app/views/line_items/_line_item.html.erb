@@ -1,0 +1,9 @@
+<% if line_item == @xurrent_item %>
+<tr id = "current_item">
+<% else %>
+<tr>
+<% end %>
+<td><%= line_item.quantity %>&times;</td>
+<td><%= line_item.product.title %></td>
+<td class="item_price"><%= sprintf("Rs. %0.02f", line_item.total_price) %></td>
+</tr>
