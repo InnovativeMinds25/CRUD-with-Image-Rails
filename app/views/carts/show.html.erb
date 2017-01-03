@@ -1,10 +1,19 @@
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
-
-<h2>BookBird Cart</h2>
-<ul>
+<div class="cart_title">Your Cart</div>
+<table>
 <% @cart.line_items.each do |item| %>
-<li><%= item.product.title %></li>
+<tr>
+<td><%= item.quantity %>&times;</td>
+<td><%= item.product.title %></td>
+<td class="item_price"><%= sprintf("Rs: %0.02f", item.total_price) %></td>
+</tr>
 <% end %>
-</ul>
+<tr class="total_line">
+<td colspan="2">Total</td>
+<td class="total_cell"><%= sprintf("Rs: %0.02f", @cart.total_price) %></td>
+</tr>
+</table>
+<%= button_to 'Empty cart', @cart, method: :delete,
+confirm: 'Are you sure?' %>
